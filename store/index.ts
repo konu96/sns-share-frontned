@@ -14,6 +14,9 @@ export const mutations: MutationTree<RootState> = {
     },
     setLoading(state, payload: boolean) {
         state.isLoading = payload;
+    },
+    setOGP(state, payload: object) {
+        state.ogpData = payload;
     }
 };
 
@@ -27,6 +30,11 @@ export const actions: ActionTree<RootState, RootState> = {
 
     setLoading({ commit }, payload: boolean) {
         commit('setLoading', payload);
+    },
+
+    async getOGP({ commit }, payload) {
+        const data = await this.$axios.$get(`/api/messages/${payload}`);
+        commit('setOGP', data);
     }
 };
 
@@ -36,5 +44,8 @@ export const getters: GetterTree<RootState, RootState> = {
     },
     loading(state) {
         return state.isLoading;
+    },
+    ogpData(state) {
+        return state.ogpData;
     }
 }

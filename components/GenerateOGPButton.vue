@@ -31,8 +31,6 @@ export default Vue.extend({
             reader.readAsDataURL(blob);
             reader.onload = function() {
               const dataURI = this.result;
-              console.log("dataURI");
-              console.log(dataURI);
               self.handleClick(dataURI);
             }
           })
