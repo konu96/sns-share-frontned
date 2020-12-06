@@ -1,65 +1,70 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">shs-share-frontend</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <section class="section no-top-pad">
+    <div id="js_capture_ref" class="ogp-message">
+      <span class="your-message"></span>
+      <span v-if="message">
+        {{ message }}
+      </span>
+      <span v-else class="no-input">
+        入力エリアにメッセージを入れてください
+      </span>
+    </div>
+
+    <div class="columns is-centered is-mobile">
+      <div class="colum is-half-desktop is-full-mobile is-full-tablet">
+        <form>
+          <div class="field">
+            <label class="label">あなたのメッセージ</label>
+            <div class="control">
+              <input class="input" name="message" v-model="message" placeholder="メッセージを入力してください" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
+  </section>
+
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      message: '',
+    };
+  },
+  methods: {
+    generateOGP() {
+
+    }
+  }
+})
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+<style scoped>
+.your-message {
   display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  font-size: 14px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.no-input {
+  color: #ccc;
 }
 
-.links {
-  padding-top: 15px;
+.ogp-message {
+  padding: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  border: 10px solid #55c500;
+  margin-bottom: 30px;
 }
 </style>
