@@ -3,7 +3,7 @@
     <div class="columns is-centered is-mobile">
       <div class="column is-half-desktop is-full-mobile is-full-tablet">
         <h2 class="subtitle"> {{ ogpData.message }}</h2>
-        <img :src="ogpData.url" alt="" />
+        <img :src="ogpData.url" :alt="ogpData.message" />
       </div>
     </div>
   </section>
@@ -40,13 +40,15 @@ export default Vue.extend({
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.ogpData.url
+          // computed より head が先に呼ばれるので、Error が出る
+          content: this.$store.getters['ogpData'].url
+          // content: this.ogpData.url
         }
       ]
     };
   },
   computed: {
-    ogpData() {
+    ogpData(): { message: string, url: string } {
       return this.$store.getters['ogpData'];
     }
   },
