@@ -32,6 +32,14 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  axios: {
+    baseURL: 'http://localhost:8000',
+  },
+
+  proxy: {
+    '/api': '/',
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     postcss: {

@@ -18,7 +18,7 @@ export const mutations: MutationTree<RootState> = {
 };
 
 export const actions: ActionTree<RootState, RootState> = {
-    async setMessage({ commit }, payload: string) {
+    async setMessage({ commit }, payload: any) {
         const json = await this.$axios.$post('/api/messages', payload);
         if (json.uuid) {
             this.$router.push(`/message/${json.uuid}`);

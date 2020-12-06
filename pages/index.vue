@@ -21,7 +21,9 @@
           </div>
           <div class="field">
             <div class="control">
-
+              <client-only placeholder="Loading...">
+                <generate-o-g-p-button @click="generateOGP" />
+              </client-only>
             </div>
           </div>
         </form>
@@ -33,16 +35,23 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import GenerateOGPButton from '~/components/GenerateOGPButton.vue';
 
 export default Vue.extend({
+  components: {
+    GenerateOGPButton
+  },
   data() {
     return {
       message: '',
     };
   },
   methods: {
-    generateOGP() {
-
+    generateOGP(event: any) {
+      this.$store.dispatch('setMessage', {
+        message: this.message,
+        image: event
+      })
     }
   }
 })
